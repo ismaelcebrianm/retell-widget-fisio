@@ -3,27 +3,277 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Go Home Fisio — Test Widget</title>
+  <title>Go Home Fisio — Asistente Virtual</title>
+
+  <!-- Google Fonts (igual que la web principal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lexend+Deca:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
+    /* ===== DESIGN TOKENS (Go Home Fisio) ===== */
+    :root {
+      --verde-oscuro:  #162a2b;
+      --verde-medio:   #5e6c5b;
+      --azul-claro:    #d4e1e2;
+      --crema:         #ddd9d0;
+      --blanco:        #ffffff;
+      --texto:         #686966;
+      --texto-oscuro:  #162a2b;
+      --hueso-borde:   #c8c4bb;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #f5f5f5;
+      font-family: "Lexend Deca", sans-serif;
+      font-weight: 300;
+      background-color: var(--crema);
+      color: var(--texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background-color: var(--crema);
+      border-bottom: 1px solid var(--hueso-borde);
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 16px rgba(22, 42, 43, 0.05);
+    }
+
+    .header__brand {
+      font-family: "Lexend Deca", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--verde-oscuro);
+      text-decoration: none;
+    }
+
+    .header__badge {
+      font-family: "Lexend Deca", sans-serif;
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--verde-medio);
+      border: 1px solid var(--hueso-borde);
+      padding: 0.3rem 0.85rem;
+      border-radius: 2px;
+    }
+
+    /* ===== MAIN ===== */
+    .main {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      color: #333;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
     }
-    h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-    p { font-size: 0.95rem; color: #666; }
+
+    .main__label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--verde-medio);
+      margin-bottom: 1.25rem;
+    }
+
+    .main__title {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      color: var(--verde-oscuro);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .main__title em {
+      font-style: italic;
+      color: var(--verde-medio);
+    }
+
+    .main__subtitle {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--texto);
+      line-height: 1.8;
+      max-width: 360px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ===== FEATURE PILLS ===== */
+    .features {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--texto);
+      letter-spacing: 0.03em;
+    }
+
+    .feature__dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--verde-medio);
+      flex-shrink: 0;
+    }
+
+    /* ===== HINT ===== */
+    .main__hint {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--texto);
+      letter-spacing: 0.06em;
+      animation: breathe 2.5s ease-in-out infinite;
+    }
+
+    .main__hint-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--verde-oscuro);
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.5; }
+      50%       { opacity: 1;   }
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      width: 1px;
+      height: 56px;
+      background-color: var(--hueso-borde);
+      margin: 0 auto 3rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background-color: var(--verde-oscuro);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: "Lexend Deca", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ===== RETELL WIDGET OVERRIDE ===== */
+    /*
+      The Retell script injects its own DOM. These rules attempt
+      to align the widget button with Go Home Fisio's brand palette.
+      Selectors may need adjustment if Retell updates its markup.
+    */
+    retell-client,
+    #retell-widget-container,
+    [class*="retell"],
+    [id*="retell"] {
+      font-family: "Lexend Deca", sans-serif !important;
+      --primary-color: var(--verde-oscuro) !important;
+    }
+
+    /* Floating trigger button */
+    [class*="retell-button"],
+    [class*="widget-button"],
+    [id*="retell-button"] {
+      background-color: var(--verde-oscuro) !important;
+      border-radius: 50% !important;
+      box-shadow: 0 4px 24px rgba(22, 42, 43, 0.4) !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    [class*="retell-button"]:hover,
+    [class*="widget-button"]:hover {
+      background-color: var(--verde-medio) !important;
+      transform: scale(1.06) translateY(-2px) !important;
+      box-shadow: 0 8px 32px rgba(22, 42, 43, 0.45) !important;
+    }
+
+    /* Chat bubble / panel */
+    [class*="retell-panel"],
+    [class*="widget-panel"],
+    [class*="chat-container"] {
+      border-radius: 4px !important;
+      border: 1px solid var(--hueso-borde) !important;
+      box-shadow: 0 12px 40px rgba(22, 42, 43, 0.12) !important;
+      font-family: "Lexend Deca", sans-serif !important;
+    }
   </style>
 </head>
 <body>
-  <h1>Go Home Fisio</h1>
-  <p>Página de prueba del asistente virtual</p>
 
+  <header class="header">
+    <span class="header__brand">Go Home Fisio</span>
+    <span class="header__badge">Asistente Virtual</span>
+  </header>
+
+  <main class="main">
+    <p class="main__label">Fisioterapia a domicilio · Madrid</p>
+
+    <h1 class="main__title">
+      Habla con nuestro<br>
+      <em>asistente</em>
+    </h1>
+
+    <p class="main__subtitle">
+      Reserva tu sesión, resuelve tus dudas o descubre nuestros
+      tratamientos. Disponible cuando lo necesites.
+    </p>
+
+    <div class="features">
+      <span class="feature">
+        <span class="feature__dot"></span>
+        Cita en 24 h
+      </span>
+      <span class="feature">
+        <span class="feature__dot"></span>
+        Atención personalizada
+      </span>
+      <span class="feature">
+        <span class="feature__dot"></span>
+        Sin desplazamientos
+      </span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="main__hint">
+      <span class="main__hint-dot"></span>
+      Pulsa el botón para comenzar
+    </div>
+  </main>
+
+  <footer class="footer">
+    © 2025 Go Home Fisio &nbsp;·&nbsp; Fisioterapia profesional a domicilio
+  </footer>
+
+  <!-- Retell AI Widget -->
   <script
     id="retell-widget"
     src="https://dashboard.retellai.com/retell-widget.js"
@@ -31,6 +281,10 @@
     data-agent-id="agent_03be9e619a0b8cad55f8e31c7e"
     data-agent-version="0"
     data-title="Asistente Go Home Fisio"
+    data-button-color="#162a2b"
+    data-button-text-color="#ffffff"
+    data-bubble-color="#d4e1e2"
   ></script>
+
 </body>
 </html>
