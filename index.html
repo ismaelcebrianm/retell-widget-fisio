@@ -11,12 +11,11 @@
 
   <style>
     :root {
-      --verde-oscuro:  #162a2b;
-      --verde-medio:   #5e6c5b;
-      --azul-claro:    #d4e1e2;
-      --crema:         #ddd9d0;
-      --blanco:        #ffffff;
-      --hueso-borde:   rgba(255, 255, 255, 0.12);
+      --verde-oscuro: #162a2b;
+      --verde-medio:  #5e6c5b;
+      --azul-claro:   #d4e1e2;
+      --crema:        #ddd9d0;
+      --blanco:       #ffffff;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +33,7 @@
     /* ===== HEADER ===== */
     .header {
       background-color: var(--verde-oscuro);
-      border-bottom: 1px solid var(--hueso-borde);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 0 2rem;
       height: 68px;
       display: flex;
@@ -53,7 +52,6 @@
     }
 
     .header__badge {
-      font-family: "Lexend Deca", sans-serif;
       font-size: 0.65rem;
       font-weight: 300;
       letter-spacing: 0.12em;
@@ -158,7 +156,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: var(--azul-claro);
+      background-color: var(--blanco);
     }
 
     @keyframes breathe {
@@ -168,45 +166,118 @@
 
     /* ===== FOOTER ===== */
     .footer {
-      border-top: 1px solid var(--hueso-borde);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding: 1.5rem 2rem;
       text-align: center;
-      font-family: "Lexend Deca", sans-serif;
       font-size: 0.7rem;
       font-weight: 300;
       letter-spacing: 0.08em;
       color: rgba(255, 255, 255, 0.25);
     }
 
-    /* ===== RETELL WIDGET OVERRIDE ===== */
-    retell-client,
-    #retell-widget-container,
-    [class*="retell"],
-    [id*="retell"] {
-      font-family: "Lexend Deca", sans-serif !important;
-    }
-
+    /* ===================================================
+       RETELL WIDGET — BOTÓN FLOTANTE
+       =================================================== */
     [class*="retell-button"],
     [class*="widget-button"],
+    [class*="call-button"],
     [id*="retell-button"] {
-      background-color: var(--azul-claro) !important;
-      border-radius: 50% !important;
-      box-shadow: 0 4px 24px rgba(212, 225, 226, 0.25) !important;
+      background-color: var(--blanco) !important;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3) !important;
       transition: transform 0.2s ease, box-shadow 0.2s ease !important;
     }
 
     [class*="retell-button"]:hover,
-    [class*="widget-button"]:hover {
+    [class*="widget-button"]:hover,
+    [class*="call-button"]:hover {
       transform: scale(1.06) translateY(-2px) !important;
-      box-shadow: 0 8px 32px rgba(212, 225, 226, 0.35) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
     }
 
+    /* ===================================================
+       RETELL WIDGET — PANEL DEL CHAT
+       =================================================== */
+
+    /* Contenedor principal del panel */
     [class*="retell-panel"],
     [class*="widget-panel"],
-    [class*="chat-container"] {
-      border-radius: 4px !important;
+    [class*="chat-container"],
+    [class*="call-container"],
+    [class*="retell-modal"],
+    retell-client {
+      background-color: var(--verde-oscuro) !important;
       border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3) !important;
+      border-radius: 4px !important;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4) !important;
+      font-family: "Lexend Deca", sans-serif !important;
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    /* Cabecera del panel */
+    [class*="panel-header"],
+    [class*="chat-header"],
+    [class*="widget-header"],
+    [class*="call-header"] {
+      background-color: var(--verde-oscuro) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      font-family: "Lexend Deca", sans-serif !important;
+      color: var(--blanco) !important;
+    }
+
+    /* Título / nombre del agente en la cabecera */
+    [class*="agent-name"],
+    [class*="panel-title"],
+    [class*="widget-title"] {
+      font-family: "DM Serif Display", serif !important;
+      color: var(--blanco) !important;
+      font-weight: 400 !important;
+    }
+
+    /* Subtítulo / estado */
+    [class*="agent-status"],
+    [class*="panel-subtitle"],
+    [class*="widget-subtitle"] {
+      font-family: "Lexend Deca", sans-serif !important;
+      color: var(--azul-claro) !important;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.06em !important;
+    }
+
+    /* Cuerpo / área de ondas / visualizador */
+    [class*="panel-body"],
+    [class*="chat-body"],
+    [class*="visualizer"],
+    [class*="waveform"] {
+      background-color: var(--verde-oscuro) !important;
+    }
+
+    /* Botón de colgar / acción principal dentro del chat */
+    [class*="end-call"],
+    [class*="hang-up"],
+    [class*="action-button"] {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      color: var(--blanco) !important;
+      font-family: "Lexend Deca", sans-serif !important;
+      border-radius: 2px !important;
+      transition: background 0.2s !important;
+    }
+
+    [class*="end-call"]:hover,
+    [class*="hang-up"]:hover,
+    [class*="action-button"]:hover {
+      background-color: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    /* Variables CSS por si Retell las expone */
+    retell-client,
+    #retell-widget-container {
+      --primary:        var(--verde-oscuro);
+      --primary-dark:   #0e1c1d;
+      --accent:         var(--azul-claro);
+      --text:           rgba(255, 255, 255, 0.85);
+      --text-secondary: rgba(255, 255, 255, 0.45);
+      --border:         rgba(255, 255, 255, 0.1);
       font-family: "Lexend Deca", sans-serif !important;
     }
   </style>
@@ -232,18 +303,9 @@
     </p>
 
     <div class="features">
-      <span class="feature">
-        <span class="feature__dot"></span>
-        Cita en 24 h
-      </span>
-      <span class="feature">
-        <span class="feature__dot"></span>
-        Atención personalizada
-      </span>
-      <span class="feature">
-        <span class="feature__dot"></span>
-        Sin desplazamientos
-      </span>
+      <span class="feature"><span class="feature__dot"></span>Cita en 24 h</span>
+      <span class="feature"><span class="feature__dot"></span>Atención personalizada</span>
+      <span class="feature"><span class="feature__dot"></span>Sin desplazamientos</span>
     </div>
 
     <div class="divider"></div>
@@ -265,9 +327,11 @@
     data-agent-id="agent_03be9e619a0b8cad55f8e31c7e"
     data-agent-version="0"
     data-title="Asistente Go Home Fisio"
-    data-button-color="#d4e1e2"
+    data-button-color="#ffffff"
     data-button-text-color="#162a2b"
-    data-bubble-color="#162a2b"
+    data-accent-color="#d4e1e2"
+    data-bg-color="#162a2b"
+    data-text-color="#ffffff"
   ></script>
 
 </body>
