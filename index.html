@@ -23,8 +23,8 @@
     body {
       font-family: "Lexend Deca", sans-serif;
       font-weight: 300;
-      background-color: var(--crema);
-      color: var(--verde-oscuro);
+      background-color: var(--verde-oscuro);
+      color: rgba(255, 255, 255, 0.7);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -32,8 +32,8 @@
 
     /* ===== HEADER ===== */
     .header {
-      background-color: var(--crema);
-      border-bottom: 1px solid rgba(22, 42, 43, 0.15);
+      background-color: var(--verde-oscuro);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 0 2rem;
       height: 68px;
       display: flex;
@@ -47,7 +47,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--verde-oscuro);
+      color: var(--blanco);
       text-decoration: none;
     }
 
@@ -56,8 +56,8 @@
       font-weight: 300;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--verde-medio);
-      border: 1px solid rgba(22, 42, 43, 0.2);
+      color: var(--azul-claro);
+      border: 1px solid rgba(212, 225, 226, 0.3);
       padding: 0.3rem 0.85rem;
       border-radius: 2px;
     }
@@ -74,14 +74,29 @@
 
     /* ===== TARJETA ===== */
     .widget-card {
-      background-color: var(--crema);
-      border: 2px solid var(--verde-oscuro);
-      border-radius: 12px;
-      padding: 3rem 2.5rem 4rem;
       max-width: 560px;
       width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Parte superior verde con el contenido */
+    .widget-card__top {
+      background-color: #1e3a3b;
+      padding: 3rem 2.5rem 2.5rem;
       text-align: center;
-      box-shadow: 0 8px 40px rgba(22, 42, 43, 0.12);
+    }
+
+    /* Parte inferior crema donde flota el botón */
+    .widget-card__bottom {
+      background-color: var(--crema);
+      padding: 2.5rem 2.5rem 3rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
     }
 
     .main__label {
@@ -89,7 +104,7 @@
       font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(22, 42, 43, 0.45);
+      color: rgba(255, 255, 255, 0.4);
       margin-bottom: 1.25rem;
     }
 
@@ -97,20 +112,20 @@
       font-family: "DM Serif Display", serif;
       font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 400;
-      color: var(--verde-oscuro);
+      color: var(--blanco);
       line-height: 1.1;
       margin-bottom: 1.25rem;
     }
 
     .main__title em {
       font-style: italic;
-      color: var(--verde-medio);
+      color: var(--azul-claro);
     }
 
     .main__subtitle {
       font-size: 0.88rem;
       font-weight: 300;
-      color: rgba(22, 42, 43, 0.6);
+      color: rgba(255, 255, 255, 0.55);
       line-height: 1.8;
       max-width: 360px;
       margin: 0 auto 2.5rem;
@@ -120,7 +135,7 @@
     .features {
       display: flex;
       gap: 1.5rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -131,7 +146,7 @@
       gap: 0.5rem;
       font-size: 0.78rem;
       font-weight: 300;
-      color: rgba(22, 42, 43, 0.55);
+      color: rgba(255, 255, 255, 0.5);
       letter-spacing: 0.03em;
     }
 
@@ -139,19 +154,11 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background-color: var(--verde-oscuro);
+      background-color: var(--azul-claro);
       flex-shrink: 0;
     }
 
-    /* ===== DIVIDER ===== */
-    .divider {
-      width: 1px;
-      height: 48px;
-      background-color: rgba(22, 42, 43, 0.15);
-      margin: 0 auto 2.5rem;
-    }
-
-    /* ===== HINT ===== */
+    /* ===== HINT en la zona crema ===== */
     .main__hint {
       display: flex;
       align-items: center;
@@ -162,6 +169,7 @@
       color: rgba(22, 42, 43, 0.45);
       letter-spacing: 0.06em;
       animation: breathe 2.5s ease-in-out infinite;
+      margin-top: 5rem;
     }
 
     .main__hint-dot {
@@ -215,13 +223,13 @@
 
     /* ===== FOOTER ===== */
     .footer {
-      border-top: 1px solid rgba(22, 42, 43, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding: 1.5rem 2rem;
       text-align: center;
       font-size: 0.7rem;
       font-weight: 300;
       letter-spacing: 0.08em;
-      color: rgba(22, 42, 43, 0.35);
+      color: rgba(255, 255, 255, 0.25);
     }
 
     retell-client,
@@ -245,30 +253,36 @@
 
   <main class="main">
     <div class="widget-card">
-      <p class="main__label">Fisioterapia a domicilio · Gran Canaria</p>
 
-      <h1 class="main__title">
-        Habla con nuestro<br>
-        <em>asistente</em>
-      </h1>
+      <!-- Parte verde: texto -->
+      <div class="widget-card__top">
+        <p class="main__label">Fisioterapia a domicilio · Gran Canaria</p>
 
-      <p class="main__subtitle">
-        Reserva tu sesión, resuelve tus dudas o descubre nuestros
-        tratamientos. Disponible cuando lo necesites.
-      </p>
+        <h1 class="main__title">
+          Habla con nuestro<br>
+          <em>asistente</em>
+        </h1>
 
-      <div class="features">
-        <span class="feature"><span class="feature__dot"></span>Cita en 24 h</span>
-        <span class="feature"><span class="feature__dot"></span>Atención personalizada</span>
-        <span class="feature"><span class="feature__dot"></span>Sin desplazamientos</span>
+        <p class="main__subtitle">
+          Reserva tu sesión, resuelve tus dudas o descubre nuestros
+          tratamientos. Disponible cuando lo necesites.
+        </p>
+
+        <div class="features">
+          <span class="feature"><span class="feature__dot"></span>Cita en 24 h</span>
+          <span class="feature"><span class="feature__dot"></span>Atención personalizada</span>
+          <span class="feature"><span class="feature__dot"></span>Sin desplazamientos</span>
+        </div>
       </div>
 
-      <div class="divider"></div>
-
-      <div class="main__hint">
-        <span class="main__hint-dot"></span>
-        Pulsa el botón para comenzar
+      <!-- Parte crema: donde flota el botón de Retell -->
+      <div class="widget-card__bottom">
+        <div class="main__hint">
+          <span class="main__hint-dot"></span>
+          Pulsa el botón para comenzar
+        </div>
       </div>
+
     </div>
   </main>
 
