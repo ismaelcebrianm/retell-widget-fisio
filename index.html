@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Go Home Fisio — Asistente Virtual</title>
+  <title>Go Home Physio — Asistente Virtual</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,6 @@
       flex-direction: column;
     }
 
-    /* ===== HEADER ===== */
     .header {
       background-color: var(--verde-oscuro);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -62,7 +61,6 @@
       border-radius: 2px;
     }
 
-    /* ===== MAIN ===== */
     .main {
       flex: 1;
       display: flex;
@@ -105,7 +103,6 @@
       margin-bottom: 2.5rem;
     }
 
-    /* ===== FEATURES ===== */
     .features {
       display: flex;
       gap: 1.5rem;
@@ -132,7 +129,6 @@
       flex-shrink: 0;
     }
 
-    /* ===== DIVIDER ===== */
     .divider {
       width: 1px;
       height: 56px;
@@ -140,7 +136,6 @@
       margin: 0 auto 3rem;
     }
 
-    /* ===== HINT ===== */
     .main__hint {
       display: flex;
       align-items: center;
@@ -164,7 +159,44 @@
       50%       { opacity: 1;   }
     }
 
-    /* ===== FOOTER ===== */
+    /* ===== FLECHA APUNTANDO AL BOTÓN ===== */
+    .arrow-hint {
+      position: fixed;
+      bottom: 88px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      animation: arrowBounce 1.2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .arrow-hint__text {
+      font-family: "Lexend Deca", sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--blanco);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 4px 10px;
+      border-radius: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      white-space: nowrap;
+    }
+
+    .arrow-hint__svg {
+      color: var(--blanco);
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
     .footer {
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding: 1.5rem 2rem;
@@ -175,101 +207,6 @@
       color: rgba(255, 255, 255, 0.25);
     }
 
-    /* ===================================================
-       RETELL WIDGET — BOTÓN FLOTANTE
-       =================================================== */
-    [class*="retell-button"],
-    [class*="widget-button"],
-    [class*="call-button"],
-    [id*="retell-button"] {
-      background-color: var(--blanco) !important;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3) !important;
-      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-    }
-
-    [class*="retell-button"]:hover,
-    [class*="widget-button"]:hover,
-    [class*="call-button"]:hover {
-      transform: scale(1.06) translateY(-2px) !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
-    }
-
-    /* ===================================================
-       RETELL WIDGET — PANEL DEL CHAT
-       =================================================== */
-
-    /* Contenedor principal del panel */
-    [class*="retell-panel"],
-    [class*="widget-panel"],
-    [class*="chat-container"],
-    [class*="call-container"],
-    [class*="retell-modal"],
-    retell-client {
-      background-color: var(--verde-oscuro) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      border-radius: 4px !important;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4) !important;
-      font-family: "Lexend Deca", sans-serif !important;
-      color: rgba(255, 255, 255, 0.85) !important;
-    }
-
-    /* Cabecera del panel */
-    [class*="panel-header"],
-    [class*="chat-header"],
-    [class*="widget-header"],
-    [class*="call-header"] {
-      background-color: var(--verde-oscuro) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-      font-family: "Lexend Deca", sans-serif !important;
-      color: var(--blanco) !important;
-    }
-
-    /* Título / nombre del agente en la cabecera */
-    [class*="agent-name"],
-    [class*="panel-title"],
-    [class*="widget-title"] {
-      font-family: "DM Serif Display", serif !important;
-      color: var(--blanco) !important;
-      font-weight: 400 !important;
-    }
-
-    /* Subtítulo / estado */
-    [class*="agent-status"],
-    [class*="panel-subtitle"],
-    [class*="widget-subtitle"] {
-      font-family: "Lexend Deca", sans-serif !important;
-      color: var(--azul-claro) !important;
-      font-size: 0.75rem !important;
-      letter-spacing: 0.06em !important;
-    }
-
-    /* Cuerpo / área de ondas / visualizador */
-    [class*="panel-body"],
-    [class*="chat-body"],
-    [class*="visualizer"],
-    [class*="waveform"] {
-      background-color: var(--verde-oscuro) !important;
-    }
-
-    /* Botón de colgar / acción principal dentro del chat */
-    [class*="end-call"],
-    [class*="hang-up"],
-    [class*="action-button"] {
-      background-color: rgba(255, 255, 255, 0.1) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      color: var(--blanco) !important;
-      font-family: "Lexend Deca", sans-serif !important;
-      border-radius: 2px !important;
-      transition: background 0.2s !important;
-    }
-
-    [class*="end-call"]:hover,
-    [class*="hang-up"]:hover,
-    [class*="action-button"]:hover {
-      background-color: rgba(255, 255, 255, 0.18) !important;
-    }
-
-    /* Variables CSS por si Retell las expone */
     retell-client,
     #retell-widget-container {
       --primary:        var(--verde-oscuro);
@@ -285,7 +222,7 @@
 <body>
 
   <header class="header">
-    <span class="header__brand">Go Home Fisio</span>
+    <span class="header__brand">Go Home Physio</span>
     <span class="header__badge">Asistente Virtual</span>
   </header>
 
@@ -316,8 +253,16 @@
     </div>
   </main>
 
+  <div class="arrow-hint">
+    <span class="arrow-hint__text">Pulsa aquí</span>
+    <svg class="arrow-hint__svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </div>
+
   <footer class="footer">
-    © 2026 Go Home Fisio &nbsp;·&nbsp; Fisioterapia profesional a domicilio
+    © 2026 Go Home Physio &nbsp;·&nbsp; Fisioterapia profesional a domicilio
   </footer>
 
   <script
@@ -326,7 +271,7 @@
     data-public-key="public_key_b59272fb3504f5caa34c1"
     data-agent-id="agent_03be9e619a0b8cad55f8e31c7e"
     data-agent-version="0"
-    data-title="Asistente Go Home Fisio"
+    data-title="Asistente Go Home Physio"
     data-button-color="#ffffff"
     data-button-text-color="#162a2b"
     data-accent-color="#d4e1e2"
