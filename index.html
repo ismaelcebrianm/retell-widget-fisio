@@ -1,303 +1,422 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Go Home Physio — Asistente Virtual</title>
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Go Home Physio — Asistente Virtual</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lexend+Deca:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lexend+Deca:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --verde-oscuro: #162a2b;
-      --verde-medio:  #5e6c5b;
-      --azul-claro:   #d4e1e2;
-      --crema:        #ddd9d0;
-      --blanco:       #ffffff;
-    }
+    <style>
+      :root {
+        --verde-oscuro: #162a2b;
+        --verde-medio:  #5e6c5b;
+        --azul-claro:   #d4e1e2;
+        --crema:        #ddd9d0;
+        --blanco:       #ffffff;
+      }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: "Lexend Deca", sans-serif;
-      font-weight: 300;
-      background-color: var(--verde-oscuro);
-      color: rgba(255, 255, 255, 0.7);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+      body {
+        font-family: "Lexend Deca", sans-serif;
+        font-weight: 300;
+        background-color: var(--verde-oscuro);
+        color: rgba(255, 255, 255, 0.7);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
 
-    .header {
-      background-color: var(--verde-oscuro);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 0 2rem;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+      .header {
+        background-color: var(--verde-oscuro);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0 2rem;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-    .header__brand {
-      font-family: "Lexend Deca", sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--blanco);
-      text-decoration: none;
-    }
+      .header__brand {
+        font-family: "Lexend Deca", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--blanco);
+        text-decoration: none;
+      }
 
-    .header__badge {
-      font-size: 0.65rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--azul-claro);
-      border: 1px solid rgba(212, 225, 226, 0.3);
-      padding: 0.3rem 0.85rem;
-      border-radius: 2px;
-    }
+      .header__badge {
+        font-size: 0.65rem;
+        font-weight: 300;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--azul-claro);
+        border: 1px solid rgba(212, 225, 226, 0.3);
+        padding: 0.3rem 0.85rem;
+        border-radius: 2px;
+      }
 
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 2rem;
-    }
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+      }
 
-    .widget-card {
-      max-width: 560px;
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-    }
+      .widget-card {
+        max-width: 560px;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+      }
 
-    .widget-card__top {
-      background-color: #1e3a3b;
-      padding: 3rem 2.5rem 2.5rem;
-      text-align: center;
-    }
+      .widget-card__top {
+        background-color: #1e3a3b;
+        padding: 3rem 2.5rem 2.5rem;
+        text-align: center;
+      }
 
-    .widget-card__bottom {
-      background-color: var(--crema);
-      padding: 1.5rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 80px;
-    }
+      .widget-card__bottom {
+        background-color: var(--crema);
+        padding: 1.5rem 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 80px;
+      }
 
-    .main__label {
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.4);
-      margin-bottom: 1.25rem;
-    }
+      .main__label {
+        font-size: 0.65rem;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 1.25rem;
+      }
 
-    .main__title {
-      font-family: "DM Serif Display", serif;
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      font-weight: 400;
-      color: var(--blanco);
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-    }
+      .main__title {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: 400;
+        color: var(--blanco);
+        line-height: 1.1;
+        margin-bottom: 1.25rem;
+      }
 
-    .main__title em {
-      font-style: italic;
-      color: var(--azul-claro);
-    }
+      .main__title em {
+        font-style: italic;
+        color: var(--azul-claro);
+      }
 
-    .main__subtitle {
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.8;
-      max-width: 360px;
-      margin: 0 auto 2.5rem;
-    }
+      .main__subtitle {
+        font-size: 0.88rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.8;
+        max-width: 360px;
+        margin: 0 auto 2.5rem;
+      }
 
-    .features {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+      .features {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.5);
-      letter-spacing: 0.03em;
-    }
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.03em;
+      }
 
-    .feature__dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background-color: var(--azul-claro);
-      flex-shrink: 0;
-    }
+      .feature__dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: var(--azul-claro);
+        flex-shrink: 0;
+      }
 
-    /* Hint dentro de la franja crema */
-    .main__hint {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: rgba(22, 42, 43, 0.6);
-      letter-spacing: 0.06em;
-      animation: breathe 2.5s ease-in-out infinite;
-    }
+      /* Hint dentro de la franja crema */
+      .main__hint {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: rgba(22, 42, 43, 0.6);
+        letter-spacing: 0.06em;
+        animation: breathe 2.5s ease-in-out infinite;
+      }
 
-    .main__hint-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: var(--verde-oscuro);
-      flex-shrink: 0;
-    }
+      .main__hint-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--verde-oscuro);
+        flex-shrink: 0;
+      }
 
-    @keyframes breathe {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 1; }
-    }
+      @keyframes breathe {
+        0%, 100% { opacity: 0.4; }
+        50%       { opacity: 1; }
+      }
 
-    /* Flecha para el standalone */
-    .arrow-hint {
-      position: fixed;
-      bottom: 110px;
-      right: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      animation: arrowBounce 1.2s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 9999;
-    }
+      /* Flecha para el standalone */
+      .arrow-hint {
+        position: fixed;
+        bottom: 110px;
+        right: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        animation: arrowBounce 1.2s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 9999;
+      }
 
-    .arrow-hint__text {
-      font-family: "Lexend Deca", sans-serif;
-      font-size: 0.65rem;
-      font-weight: 400;
-      color: var(--blanco);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.12);
-      padding: 4px 10px;
-      border-radius: 2px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      white-space: nowrap;
-    }
+      .arrow-hint__text {
+        font-family: "Lexend Deca", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 400;
+        color: var(--blanco);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.12);
+        padding: 4px 10px;
+        border-radius: 2px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        white-space: nowrap;
+      }
 
-    .arrow-hint__svg {
-      color: var(--blanco);
-    }
+      .arrow-hint__svg {
+        color: var(--blanco);
+      }
 
-    @keyframes arrowBounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
-    }
+      @keyframes arrowBounce {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(6px); }
+      }
 
-    .footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      font-size: 0.7rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: rgba(255, 255, 255, 0.25);
-    }
+      .footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.5rem 2rem;
+        text-align: center;
+        font-size: 0.7rem;
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.25);
+      }
 
-    retell-client,
-    #retell-widget-container {
-      --primary:        var(--verde-oscuro);
-      --primary-dark:   #0e1c1d;
-      --accent:         var(--azul-claro);
-      --text:           rgba(255, 255, 255, 0.85);
-      --text-secondary: rgba(255, 255, 255, 0.45);
-      --border:         rgba(255, 255, 255, 0.1);
-      font-family: "Lexend Deca", sans-serif !important;
-    }
-  </style>
-</head>
-<body>
+      retell-client,
+      #retell-widget-container {
+        --primary:        var(--verde-oscuro);
+        --primary-dark:   #0e1c1d;
+        --accent:         var(--azul-claro);
+        --text:           rgba(255, 255, 255, 0.85);
+        --text-secondary: rgba(255, 255, 255, 0.45);
+        --border:         rgba(255, 255, 255, 0.1);
+        font-family: "Lexend Deca", sans-serif !important;
+      }
 
-  <header class="header">
-    <span class="header__brand">Go Home Physio</span>
-    <span class="header__badge">Asistente Virtual</span>
-  </header>
+      /* TAREA 6 — Loading overlay */
+      #retell-loading-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: rgba(22, 42, 43, 0.88);
+        backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+        font-family: "Lexend Deca", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        color: var(--azul-claro);
+        text-transform: uppercase;
+      }
+      #retell-loading-overlay.active { display: flex; }
+      @keyframes connectPulse {
+        0%, 100% { opacity: 0.35; }
+        50%       { opacity: 1; }
+      }
+      .loading-pulse { animation: connectPulse 1.1s ease-in-out infinite; }
 
-  <main class="main">
-    <div class="widget-card">
+      /* TAREA 8 — Widget button color overrides (best-effort, light DOM) */
+      retell-client::part(button),
+      #retell-widget-container > button,
+      [id*="retell"] > button {
+        background-color: var(--azul-claro) !important;
+        color:            var(--verde-oscuro) !important;
+      }
+    </style>
+  </head>
+  <body>
 
-      <div class="widget-card__top">
-        <p class="main__label">Fisioterapia a domicilio · Gran Canaria</p>
-        <h1 class="main__title">
-          Habla con nuestro<br>
-          <em>asistente</em>
-        </h1>
-        <p class="main__subtitle">
-          Reserva tu sesión, resuelve tus dudas o descubre nuestros
-          tratamientos. Disponible cuando lo necesites.
-        </p>
-        <div class="features">
-          <span class="feature"><span class="feature__dot"></span>Pide, cambia o cancela tu cita en 2 minutos</span>
-          <span class="feature"><span class="feature__dot"></span>Atención personalizada</span>
-          <span class="feature"><span class="feature__dot"></span>Por mensaje, o por llamada (pronto) </span>
+    <header class="header">
+      <span class="header__brand">Go Home Physio</span>
+      <span class="header__badge">Asistente Virtual</span>
+    </header>
+
+    <main class="main">
+      <div class="widget-card">
+
+        <div class="widget-card__top">
+          <p class="main__label">Fisioterapia a domicilio · Gran Canaria</p>
+          <h1 class="main__title">
+            Habla con nuestro<br>
+            <em>asistente</em>
+          </h1>
+          <p class="main__subtitle">
+            Reserva tu sesión, resuelve tus dudas o descubre nuestros
+            tratamientos. Disponible cuando lo necesites.
+          </p>
+          <div class="features">
+            <span class="feature"><span class="feature__dot"></span>Pide, cambia o cancela tu cita en 2 minutos</span>
+            <span class="feature"><span class="feature__dot"></span>Atención personalizada</span>
+            <span class="feature"><span class="feature__dot"></span>Por mensaje, o por llamada (pronto) </span>
+          </div>
         </div>
-      </div>
 
-      <div class="widget-card__bottom">
-        <div class="main__hint">
-          <span class="main__hint-dot"></span>
-          Pulsa el botón para comenzar
+        <div class="widget-card__bottom">
+          <div class="main__hint">
+            <span class="main__hint-dot"></span>
+            Pulsa el botón para comenzar
+          </div>
         </div>
-      </div>
 
+      </div>
+    </main>
+
+    <!-- Flecha para el standalone -->
+    <div class="arrow-hint">
+      <span class="arrow-hint__text">Pulsa aquí</span>
+      <svg class="arrow-hint__svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
     </div>
-  </main>
 
-  <!-- Flecha para el standalone -->
-  <div class="arrow-hint">
-    <span class="arrow-hint__text">Pulsa aquí</span>
-    <svg class="arrow-hint__svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="12" y1="5" x2="12" y2="19"></line>
-      <polyline points="19 12 12 19 5 12"></polyline>
-    </svg>
-  </div>
+    <footer class="footer">
+      © 2026 Go Home Physio &nbsp;·&nbsp; Fisioterapia profesional a domicilio
+    </footer>
 
-  <footer class="footer">
-    © 2026 Go Home Physio &nbsp;·&nbsp; Fisioterapia profesional a domicilio
-  </footer>
+    <!-- TAREA 6: loading overlay -->
+    <div id="retell-loading-overlay">
+      <span class="loading-pulse">Conectando con Isma…</span>
+    </div>
 
-  <script
-    id="retell-widget"
-    src="https://dashboard.retellai.com/retell-widget.js"
-    data-public-key="public_key_b59272fb3504f5caa34c1"
-    data-agent-id="agent_abd77986b0a125c9f8bce7dc72"
-    data-agent-version="20"
-    data-title="Asistente Go Home Physio"
-    data-button-color="#d4e1e2"
-    data-button-text-color="#162a2b"
-    data-accent-color="#d4e1e2"
-    data-bg-color="#162a2b"
-    data-text-color="#ffffff"
-  ></script>
+    <script
+      id="retell-widget"
+      src="https://dashboard.retellai.com/retell-widget.js"
+      data-public-key="public_key_b59272fb3504f5caa34c1"
+      data-agent-id="agent_897a8e33ab7e3ad36036ff2992"
+      data-agent-version="0"
+      data-title="Asistente Go Home Physio"
+      data-button-color="#d4e1e2"
+      data-button-text-color="#162a2b"
+      data-accent-color="#d4e1e2"
+      data-bg-color="#162a2b"
+      data-text-color="#ffffff"
+    ></script>
 
-</body>
-</html>
+    <!-- TAREAS 6 & 7: loading overlay + placeholder en español -->
+    <script>
+      (function () {
+        var overlay = document.getElementById('retell-loading-overlay');
+        var buttonBound = false;
+
+        function showOverlay() {
+          overlay.classList.add('active');
+          setTimeout(function () { overlay.classList.remove('active'); }, 2000);
+        }
+
+        /* TAREA 6 — Intenta engancharse al botón de Retell */
+        function tryBindRetellButton() {
+          if (buttonBound) return;
+
+          /* light DOM */
+          var selectors = [
+            'retell-client button',
+            '#retell-widget-container button',
+            '[id*="retell"] button'
+          ];
+          selectors.forEach(function (sel) {
+            document.querySelectorAll(sel).forEach(function (btn) {
+              if (!btn._retellOverlayBound) {
+                btn._retellOverlayBound = true;
+                btn.addEventListener('click', showOverlay);
+                buttonBound = true;
+              }
+            });
+          });
+
+          /* shadow DOM */
+          var hosts = document.querySelectorAll('retell-client, [id*="retell-widget"]');
+          hosts.forEach(function (host) {
+            if (host.shadowRoot) {
+              var shadowBtn = host.shadowRoot.querySelector('button');
+              if (shadowBtn && !shadowBtn._retellOverlayBound) {
+                shadowBtn._retellOverlayBound = true;
+                shadowBtn.addEventListener('click', showOverlay);
+                buttonBound = true;
+              }
+            }
+          });
+        }
+
+        /* TAREA 7 — Fuerza placeholder en español */
+        function fixPlaceholder() {
+          /* light DOM */
+          document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(function (el) {
+            if (el.placeholder !== 'Escribe tu mensaje aquí…') {
+              el.placeholder = 'Escribe tu mensaje aquí…';
+            }
+          });
+          /* shadow DOM */
+          document.querySelectorAll('*').forEach(function (host) {
+            if (host.shadowRoot) {
+              host.shadowRoot.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(function (el) {
+                if (el.placeholder !== 'Escribe tu mensaje aquí…') {
+                  el.placeholder = 'Escribe tu mensaje aquí…';
+                }
+              });
+            }
+          });
+        }
+
+        /* MutationObserver — reacciona cuando Retell añade elementos al DOM */
+        var observer = new MutationObserver(function () {
+          tryBindRetellButton();
+          fixPlaceholder();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        /* Intentos adicionales tras la carga completa */
+        window.addEventListener('load', function () {
+          setTimeout(tryBindRetellButton, 800);
+          setTimeout(fixPlaceholder, 800);
+          setTimeout(tryBindRetellButton, 2500);
+          setTimeout(fixPlaceholder, 2500);
+        });
+      })();
+    </script>
+
+  </body>
+  </html>
